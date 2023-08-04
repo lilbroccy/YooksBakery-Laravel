@@ -228,7 +228,7 @@
                 <h1>Kenapa Harus Memilih Kami?</h1>
             </div>
             @auth
-    ID Pengguna yang terautentikasi: {{ auth()->id() }}
+
 @else
     Pengguna tidak terautentikasi
 @endauth
