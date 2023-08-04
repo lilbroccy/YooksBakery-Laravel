@@ -98,6 +98,10 @@ class AdminController extends Controller
 
         if ($selisihHari > 3) {
             $products[$key]->keterangan = "Kadaluarsa";
+            $products[$key]->stock_produk="0";
+        }
+        else {
+            $products[$key]->keterangan = "Belum Kadaluarsa";
         }
     }
         return view('admin.layouts-produk', ['products' => $products]);
