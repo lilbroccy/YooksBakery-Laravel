@@ -6,6 +6,8 @@ use DateTime;
 use DateInterval;
 use DatePeriod;
 use App\Models\User;
+use App\Observers\ProductStockObserver;
+use App\Models\Produk;
 use App\Models\PenjualanProduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,10 +20,10 @@ class AdminController extends Controller
         // Chart Kategori dan Produk
         $transaksiCount = PenjualanProduk::count();
         $allData = DB::table('products')
-            ->leftJoin('categories', 'categories.id_kategori', '=', 'products.id_kategori')
-            ->select('categories.nama_kategori as nama', DB::raw('COUNT(products.id_produk) as jumlah'))
-            ->groupBy('products.id_kategori')
-            ->get();
+    ->leftJoin('categories', 'categories.id_kategori', '=', 'products.id_kategori')
+    ->select('categories.nama_kategori as nama', DB::raw('COUNT(products.id_produk) as jumlah'))
+    ->groupBy('categories.nama_kategori')
+    ->get();
 
         // Set data
         $data = [];
@@ -85,6 +87,7 @@ class AdminController extends Controller
 
     public function dataproduk()
     {
+        
         $products = DB::table('products')->get();
         // Memberikan batas tanggal kadaluarsa pada produk
         foreach ($products as $key => $value) {

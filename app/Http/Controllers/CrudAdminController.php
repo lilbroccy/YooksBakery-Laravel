@@ -172,7 +172,7 @@ class CrudAdminController extends Controller
                 'coret' => 'required',
                 'stock' => 'required',
                 'date' => 'required',
-                'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
                 'keterangan' => 'required',
             ]);
 
@@ -190,18 +190,33 @@ class CrudAdminController extends Controller
             //     return redirect()->back()->with('error', 'Produk tidak ditemukan');
             // }
             // Simpan data produk
-            $produk->id_supplier = $request->id_supplier;
-            $produk->id_kategori = $request->id_kategori;
-            $produk->kode_produk = $request->kode;
-            $produk->nama_produk = $request->nama;
-            $produk->biaya_produk = $request->beli;
-            $produk->jual_produk = $request->jual;
-            $produk->harga_coret = $request->coret;
-            $produk->stock_produk = $request->stock;
-            $produk->tanggal_produksi = $request->date;
-            $produk->foto_produk = $namaFoto;
-            $produk->keterangan_produk = $request->keterangan;
-            $produk->save();
+            if(isset($namaFoto)){
+                $produk->id_supplier = $request->id_supplier;
+                $produk->id_kategori = $request->id_kategori;
+                $produk->kode_produk = $request->kode;
+                $produk->nama_produk = $request->nama;
+                $produk->biaya_produk = $request->beli;
+                $produk->jual_produk = $request->jual;
+                $produk->harga_coret = $request->coret;
+                $produk->stock_produk = $request->stock;
+                $produk->tanggal_produksi = $request->date;
+                $produk->foto_produk = $namaFoto;
+                $produk->keterangan_produk = $request->keterangan;
+                $produk->save();
+            } else{
+                $produk->id_supplier = $request->id_supplier;
+                $produk->id_kategori = $request->id_kategori;
+                $produk->kode_produk = $request->kode;
+                $produk->nama_produk = $request->nama;
+                $produk->biaya_produk = $request->beli;
+                $produk->jual_produk = $request->jual;
+                $produk->harga_coret = $request->coret;
+                $produk->stock_produk = $request->stock;
+                $produk->tanggal_produksi = $request->date;
+                $produk->foto_produk = $produk->foto_produk;
+                $produk->keterangan_produk = $request->keterangan;
+                $produk->save();
+            }
             // if (!$produk->save()) {
             //     return redirect()->back()->with('error', 'Gagal menyimpan produk');
             // }

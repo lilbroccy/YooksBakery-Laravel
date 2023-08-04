@@ -8,7 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\crudAdminController;
+use App\Http\Controllers\CrudAdminController;
 
 /*
 |--------------------------------------------------------------------------
